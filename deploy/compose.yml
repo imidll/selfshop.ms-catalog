@@ -1,0 +1,8 @@
+services:
+  backend:
+    image: ko.local/selfshop.ms-catalog:latest
+    ports:
+      - "${INIT__ENTRY__HTTP__PORT:-8080}:\
+         ${INIT__ENTRY__HTTP__PORT:-8080}"
+    restart: unless-stopped
+    env_file: [ .env ]
