@@ -1,0 +1,25 @@
+# .github/workflows/labeler.yml
+
+name: Labeler
+
+on:
+  # Используем pull_request_target чтобы иметь доступ к write-permissions
+  # даже для PR из форков - fuxingloh/multi-labeler это требует
+  pull_request_target:
+    types: [ opened, reopened, synchronize, edited ]
+    branches: [ main, dev ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label-pull-request:
+    name: Apply labels to PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run multi-labeler
+        uses: fuxingloh/multi-labeler@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          config-path: .github/labeler.yml

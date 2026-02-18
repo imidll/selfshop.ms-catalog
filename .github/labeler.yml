@@ -1,0 +1,98 @@
+# .github/labeler.yml
+
+version: v1
+
+labels:
+  - label: '✨ Feature'
+    sync: true
+    matcher:
+      title: '^(feat(ure)?|add|create|implement|impl):.*'
+      body: '(feat(ure)?|add|create|implement)'
+
+  - label: '🐛 Bug'
+    sync: true
+    matcher:
+      title: '^(fix|bug|hotfix|correct|race|missing):.*'
+
+  - label: '🔄 Refactor'
+    sync: true
+    matcher:
+      title: '^(refactor|restructure|cleanup|rewrite):.*'
+
+  - label: '🧹 Updates / Chore'
+    sync: true
+    matcher:
+      title: '^(chore|update|improve|deprecated|remove|unused):.*'
+
+  - label: '🤖 Dependencies'
+    sync: true
+    matcher:
+      title: '^(deps?|bump|chore\(deps\)):.*'
+      files:
+        any: [ 'go.mod', 'go.sum', 'go.work', 'vendor/**' ]
+
+  - label: '📚 Documentation'
+    sync: true
+    matcher:
+      title: '^(docs?|doc|readme|documentation):.*'
+      files:
+        any: [ '*.md', 'docs/**', 'readme*' ]
+
+  - label: '🧪 Testing'
+    sync: true
+    matcher:
+      title: '^(test|tests|testing|coverage):.*'
+      files:
+        any: [ '*_test.go', 'test/**', 'testdata/**', 'benchmarks/**', integration/**, 'e2e/**' ]
+
+  - label: '🔒 Security'
+    sync: true
+    matcher:
+      title: '^(security|vuln|secure|auth|encrypt|sast):.*'
+      files:
+        any: [ 'dependabot.y*ml' ]
+
+  - label: '⚡️ Performance'
+    sync: true
+    matcher:
+      title: '^(perf|performance|optimize|speed|cache):.*'
+
+  - label: '🛡️ Infrastructure / CI'
+    sync: true
+    matcher:
+      title: '^(infra|infrastructure|ci|cd|docker|deploy|setup|github|workflow):.*'
+      files:
+        any: [ '.github/**', 'Dockerfile*', 'Earthfile*', 'Tiltfile*', '*.ko.y*ml', 'compose*' ]
+
+  - label: '🚀 Release'
+    sync: true
+    matcher:
+      title: '^(release|version|chore\(release\)):.*'
+
+  - label: '🔧 Configuration'
+    sync: true
+    matcher:
+      title: '^(config|configure|settings|env):.*'
+      files:
+        any: [ '*.toml', '*.json', '*.y*ml', '.env*', 'configs/**' ]
+
+  - label: '🗄️ Database / Migrations'
+    sync: true
+    matcher:
+      title: '^(db|database|migration|migrate|schema|sql):.*'
+      files:
+        any: [ 'migrations/**', '*.sql' ]
+
+  - label: '🎨 Code Style'
+    sync: true
+    matcher:
+      title: '^(style|format|lint|golangci):.*'
+      files:
+        any: [ 'golangci.*', '.editorconfig' ]
+
+  - label: '📦 Build / Tooling'
+    sync: true
+    matcher:
+      title: '^(build|makefile|tools|tooling):.*'
+      files:
+        any: [ 'Makefile', 'build/**', 'bin/**', 'scripts/**' ]
