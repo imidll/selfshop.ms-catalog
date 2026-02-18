@@ -1,0 +1,53 @@
+version: "2"
+
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+
+linters:
+  default: none
+  enable:
+    - exhaustive
+    - perfsprint
+    - testifylint
+    - govet
+    - staticcheck
+    - ineffassign
+    - unused
+    - errcheck
+    - errorlint
+    - nilerr
+    - bodyclose
+    - prealloc
+    - unconvert
+    - wastedassign
+    - gosec
+    - misspell
+    - whitespace
+
+  settings:
+    errcheck:
+      check-type-assertions: true
+      check-blank: false
+
+    govet:
+      enable:
+        - shadow
+
+    gosec:
+      excludes:
+        - G404 # rand без seed
+        - G307 # defer без errcheck (если использовать bodyclose)
+
+  exclusions:
+    generated: strict
+    rules:
+      - path: _test\.go
+        linters:
+          - typecheck
+          - gosec
+          - errcheck
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
