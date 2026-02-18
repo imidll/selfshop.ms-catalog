@@ -1,0 +1,25 @@
+name: 💬 Question
+description: Вопрос по использованию или архитектуре
+title: "question: "
+labels:
+  - 📚 Documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Если вопрос не связан с багом или новой функциональностью,
+        используйте этот шаблон.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Вопрос
+      description: Опишите, что именно вы хотите уточнить
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Контекст
+      description: Что вы уже пробовали, ссылки на код или документацию
