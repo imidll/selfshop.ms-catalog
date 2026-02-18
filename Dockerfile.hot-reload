@@ -1,0 +1,16 @@
+ARG GO_VERSION=1.25
+FROM golang:${GO_VERSION}-alpine AS dev
+WORKDIR /app
+
+RUN go version
+RUN go install github.com/air-verse/air@latest
+
+COPY go.mod go.sum ./
+RUN --mount=type=cache,target=/go/pkg/mod \
+    --mount=type=cache,target=/root/.cache/go-build \
+    go mod download -x
+
+ARG HTTP_PORT=8081
+EXPOSE ${HTTP_PORT}
+
+CMD ["air", "-c", ".air.toml"]
