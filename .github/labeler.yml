@@ -6,93 +6,138 @@ labels:
   - label: '✨ Feature'
     sync: true
     matcher:
-      title: '^(feat(ure)?|add|create|implement|impl):.*'
-      body: '(feat(ure)?|add|create|implement)'
+      title: '^feat(\(.+\))?!?:.*'
+      commits: '^feat(\(.+\))?!?:.*'
 
   - label: '🐛 Bug'
     sync: true
     matcher:
-      title: '^(fix|bug|hotfix|correct|race|missing):.*'
+      title: '^fix(\(.+\))?!?:.*'
+      commits: '^fix(\(.+\))?!?:.*'
 
   - label: '🔄 Refactor'
     sync: true
     matcher:
-      title: '^(refactor|restructure|cleanup|rewrite):.*'
-
-  - label: '🧹 Updates / Chore'
-    sync: true
-    matcher:
-      title: '^(chore|update|improve|deprecated|remove|unused):.*'
-
-  - label: '🤖 Dependencies'
-    sync: true
-    matcher:
-      title: '^(deps?|bump|chore\(deps\)):.*'
-      files:
-        any: [ 'go.mod', 'go.sum', 'go.work', 'vendor/**' ]
-
-  - label: '📚 Documentation'
-    sync: true
-    matcher:
-      title: '^(docs?|doc|readme|documentation):.*'
-      files:
-        any: [ '*.md', 'docs/**', 'readme*' ]
-
-  - label: '🧪 Testing'
-    sync: true
-    matcher:
-      title: '^(test|tests|testing|coverage):.*'
-      files:
-        any: [ '*_test.go', 'test/**', 'testdata/**', 'benchmarks/**', integration/**, 'e2e/**' ]
-
-  - label: '🔒 Security'
-    sync: true
-    matcher:
-      title: '^(security|vuln|secure|auth|encrypt|sast):.*'
-      files:
-        any: [ 'dependabot.y*ml' ]
+      title: '^refactor(\(.+\))?!?:.*'
+      commits: '^refactor(\(.+\))?!?:.*'
 
   - label: '⚡️ Performance'
     sync: true
     matcher:
-      title: '^(perf|performance|optimize|speed|cache):.*'
+      title: '^perf(\(.+\))?!?:.*'
+      commits: '^perf(\(.+\))?!?:.*'
 
-  - label: '🛡️ Infrastructure / CI'
+  - label: '🧹 Chore'
     sync: true
     matcher:
-      title: '^(infra|infrastructure|ci|cd|docker|deploy|setup|github|workflow):.*'
-      files:
-        any: [ '.github/**', 'Dockerfile*', 'Earthfile*', 'Tiltfile*', '*.ko.y*ml', 'compose*' ]
+      title: '^chore(\(.+\))?!?:.*'
+      commits: '^chore(\(.+\))?!?:.*'
 
-  - label: '🚀 Release'
+  - label: '📚 Documentation'
     sync: true
     matcher:
-      title: '^(release|version|chore\(release\)):.*'
+      title: '^docs(\(.+\))?!?:.*'
+      commits: '^docs(\(.+\))?!?:.*'
 
-  - label: '🔧 Configuration'
+  - label: '🧪 Testing'
     sync: true
     matcher:
-      title: '^(config|configure|settings|env):.*'
-      files:
-        any: [ '*.toml', '*.json', '*.y*ml', '.env*', 'configs/**' ]
-
-  - label: '🗄️ Database / Migrations'
-    sync: true
-    matcher:
-      title: '^(db|database|migration|migrate|schema|sql):.*'
-      files:
-        any: [ 'migrations/**', '*.sql' ]
+      title: '^test(\(.+\))?!?:.*'
+      commits: '^test(\(.+\))?!?:.*'
 
   - label: '🎨 Code Style'
     sync: true
     matcher:
-      title: '^(style|format|lint|golangci):.*'
-      files:
-        any: [ 'golangci.*', '.editorconfig' ]
+      title: '^style(\(.+\))?!?:.*'
+      commits: '^style(\(.+\))?!?:.*'
 
-  - label: '📦 Build / Tooling'
+  - label: '🛡️ Infrastructure / CI'
     sync: true
     matcher:
-      title: '^(build|makefile|tools|tooling):.*'
+      title: '^(ci|build)(\(.+\))?!?:.*'
+      commits: '^(ci|build)(\(.+\))?!?:.*'
+
+  - label: '🔒 Security'
+    sync: true
+    matcher:
+      title: '^security(\(.+\))?!?:.*'
+      commits: '^security(\(.+\))?!?:.*'
+
+  - label: '🚀 Release'
+    sync: true
+    matcher:
+      title: '^release(\(.+\))?!?:.*'
+      commits: '^release(\(.+\))?!?:.*'
+
+  - label: '💥 Breaking Change'
+    sync: true
+    matcher:
+      title: '^[a-z]+(\(.+\))?!:.*'
+      commits: '^[a-z]+(\(.+\))?!:.*'
+
+  - label: '🤖 Dependencies'
+    sync: true
+    matcher:
+      title: '^(deps?|chore\(deps\)):.*'
       files:
-        any: [ 'Makefile', 'build/**', 'bin/**', 'scripts/**' ]
+        any: ['go.mod', 'go.sum', 'vendor/**']
+
+  - label: 'size: s'
+    sync: true
+    matcher:
+      files:
+        count:
+          gte: 1
+          lte: 10
+
+  - label: 'size: m'
+    sync: true
+    matcher:
+      files:
+        count:
+          gte: 11
+          lte: 30
+
+  - label: 'size: l'
+    sync: true
+    matcher:
+      files:
+        count:
+          gte: 31
+
+  - label: '🐛 Bug'
+    matcher:
+      body: '(\\n|.)*-\\s+\\[x\\]\\s+(bug|ошибка)(\\n|.)*'
+
+  - label: '✨ Feature'
+    matcher:
+      body: '(\\n|.)*-\\s+\\[x\\]\\s+(feature|фича)(\\n|.)*'
+
+  - label: 'stale'
+    matcher:
+      comment: '/stale'
+
+  - label: 'wontfix'
+    matcher:
+      comment: '/wontfix'
+
+checks:
+  - context: 'Semantic PR'
+    url: 'https://www.conventionalcommits.org'
+    description:
+      success: 'Conventional commit prefix найден.'
+      failure: 'Добавь conventional commit prefix: feat:, fix:, chore: и т.д.'
+    labels:
+      any:
+        - '✨ Feature'
+        - '🐛 Bug'
+        - '🔄 Refactor'
+        - '⚡️ Performance'
+        - '🧹 Chore'
+        - '📚 Documentation'
+        - '🧪 Testing'
+        - '🎨 Code Style'
+        - '🛡️ Infrastructure / CI'
+        - '🔒 Security'
+        - '🚀 Release'
+        - '🤖 Dependencies'
