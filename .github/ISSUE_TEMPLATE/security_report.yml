@@ -1,0 +1,31 @@
+name: 🔒 Security vulnerability
+description: Сообщить о проблеме безопасности (НЕ для публичного обсуждения)
+title: "security: "
+labels:
+  - 🔒 Security
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ Пожалуйста, **не публикуйте чувствительные детали**.
+        Если уязвимость критическая, используйте Security Advisories.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Краткое описание
+      description: В чём суть уязвимости?
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Потенциальное влияние
+      description: Что может получить атакующий?
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Шаги воспроизведения (если безопасно)
+      description: Не прикладывайте PoC, если он опасен
