@@ -1,0 +1,58 @@
+name: 🐛 Bug report
+description: Сообщить об ошибке или некорректном поведении
+title: "bug: "
+labels:
+  - 🐛 Bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Спасибо за сообщение об ошибке.
+        Пожалуйста, заполните форму максимально подробно — это ускорит разбор проблемы.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Описание проблемы
+      description: Что именно пошло не так?
+      placeholder: Краткое и чёткое описание бага
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Шаги для воспроизведения
+      description: Как воспроизвести проблему?
+      placeholder: |
+        1. Запустить сервис с конфигурацией ...
+        2. Отправить запрос ...
+        3. Получить ошибку ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемое поведение
+      placeholder: Что должно было произойти?
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Фактическое поведение
+      placeholder: Что произошло на самом деле?
+
+  - type: input
+    id: version
+    attributes:
+      label: Версия / commit
+      description: Версия сервиса, tag или commit hash
+      placeholder: v0.1.0 или a1b2c3d
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Логи / stacktrace / Другое
+      description: Если есть любая доступная информация - будет полезно.
+      render: shell
