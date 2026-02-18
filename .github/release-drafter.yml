@@ -4,32 +4,42 @@ name-template: '$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
 
 categories:
-  - title: '🚨 Breaking Changes'
-    labels: [ '🔒 Security', '🚀 Release' ]
+  - title: '💥 Breaking Changes'
+    labels: ['💥 Breaking Change']
 
   - title: '✨ Features'
-    labels: [ '✨ Feature' ]
+    labels: ['✨ Feature']
 
   - title: '🐛 Bug Fixes'
-    labels: [ '🐛 Bug' ]
+    labels: ['🐛 Bug']
 
-  - title: '🚀 Enhancements & Updates'
-    labels: [ '⚡️ Performance', '🧹 Updates / Chore', '🔄 Refactor', '🤖 Dependencies' ]
+  - title: '⚡️ Performance'
+    labels: ['⚡️ Performance']
 
-  - title: '🗄️ Database & Configuration'
-    labels: [ '🗄️ Database / Migrations', '🔧 Configuration' ]
+  - title: '🔄 Refactor'
+    labels: ['🔄 Refactor']
+
+  - title: '🧹 Chore & Dependencies'
+    labels: ['🧹 Chore', '🤖 Dependencies']
+
+  - title: '🧪 Tests & CI'
+    labels: ['🧪 Testing', '🛡️ Infrastructure / CI']
 
   - title: '📚 Documentation'
-    labels: [ '📚 Documentation' ]
+    labels: ['📚 Documentation']
 
-  - title: '🛡️ Tests & CI'
-    labels: [ '🧪 Testing', '🛡️ Infrastructure / CI' ]
+  - title: '🎨 Code Style'
+    labels: ['🎨 Code Style']
 
-  - title: '🛠️ Development & Tooling'
-    labels: [ '🎨 Code Style', '📦 Build / Tooling' ]
-
+# Каждый PR попадает ровно в одну категорию — первую совпавшую
+# Changelog строится из заголовков коммитов PR через $TITLE
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&'
+
+exclude-labels:
+  - 'size: s'
+  - 'size: m'
+  - 'size: l'
 
 exclude-contributors:
   - dependabot
@@ -37,16 +47,25 @@ exclude-contributors:
 
 version-resolver:
   major:
-    labels: [ 'major', 'breaking', '🚀 Release', '🔒 Security' ]
+    labels: ['💥 Breaking Change', '🔒 Security']
   minor:
-    labels: [ 'minor', '✨ Feature', '🗄️ Database / Migrations' ]
+    labels: ['✨ Feature']
   patch:
-    labels: [ 'patch', '🐛 Bug', '📚 Documentation', '⚡️ Performance', '🧹 Updates / Chore', '🔄 Refactor', '🤖 Dependencies', '🧪 Testing', '🛡️ Infrastructure / CI', '🔧 Configuration', '🎨 Code Style', '📦 Build / Tooling' ]
+    labels:
+      - '🐛 Bug'
+      - '⚡️ Performance'
+      - '🔄 Refactor'
+      - '🧹 Chore'
+      - '🤖 Dependencies'
+      - '🧪 Testing'
+      - '🛡️ Infrastructure / CI'
+      - '📚 Documentation'
+      - '🎨 Code Style'
   default: patch
 
 template: |
   ## What's Changed
-  
+
   $CHANGES
 
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
