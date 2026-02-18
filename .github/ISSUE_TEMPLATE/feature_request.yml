@@ -1,0 +1,47 @@
+name: ✨ Feature request
+description: Предложить новую функциональность или улучшение
+title: "feat: "
+labels:
+  - ✨ Feature
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Используйте этот шаблон для предложений по функциональности.
+        Для крупных изменений рекомендуется предварительное обсуждение.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Какая проблема решается?
+      description: Какую боль или ограничение вы хотите устранить?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Предлагаемое решение
+      description: Как вы видите реализацию?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Альтернативы
+      description: Какие варианты ещё рассматривались?
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Риски и последствия
+      description: Возможные побочные эффекты, breaking changes, влияние на API
+
+  - type: checkboxes
+    id: readiness
+    attributes:
+      label: Готовность
+      options:
+        - label: Я готов реализовать это самостоятельно
+        - label: Требуется обсуждение архитектуры (ADR)
