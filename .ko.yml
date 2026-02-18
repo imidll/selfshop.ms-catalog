@@ -1,0 +1,28 @@
+defaultBaseImage: gcr.io/distroless/static-debian12:nonroot
+defaultPlatforms:
+  - linux/amd64
+  - linux/arm64
+
+sbom:          cyclonedx
+sbomGenerator: cyclonedx-go
+
+builds:
+  - id:         selfshop.ms-catalog
+    main: ./cmd/selfshop.ms-catalog
+    dir:  .
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -w -s
+      - -X main.version={{.Git.Tag}}
+      - -X main.comhash={{.Git.FullCommit}}
+      - -X main.buildAt={{.Date}}
+    flags:
+      - -trimpath
+    labels:
+      org.opencontainers.image.title: selfshop.ms-catalog
+      org.opencontainers.image.description: selfshop microservice catalog
+      org.opencontainers.image.license: MIT
+      org.opencontainers.image.vendor: imidll
+      org.opencontainers.image.source: https://github.com/imidll/selfshop.ms-catalog
+      org.opencontainers.image.documentation: https://github.com/imidll/selfshop.ms-catalog/blob/main/README.md
