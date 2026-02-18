@@ -1,0 +1,28 @@
+# .github/workflows/block-non-dev-to-main.yml
+
+name: Block non-dev PRs to main
+
+on:
+  pull_request:
+    branches: [ main ]
+
+# Только чтение - нам нужно лишь читать данные PR
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  check-source-branch:
+    name: Validate PR source branch
+    runs-on: ubuntu-latest
+    steps: # Блокируем всё кроме dev -> main (dependabot всегда идёт через dev)
+      - name: Fail if source is not dev
+        if: github.head_ref != 'dev'
+        run: |
+          echo "::error title=Invalid PR source::PRs to 'main' are only allowed from 'dev'."
+          echo "::error::Current source branch: '${{ github.head_ref }}'"
+          exit 1
+
+      - name: Source branch is valid
+        if: github.head_ref == 'dev'
+        run: echo "✅ Source branch 'dev' is allowed to merge into 'main'."
