@@ -1,0 +1,52 @@
+# .github/release-drafter.yml
+
+name-template: '$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+
+categories:
+  - title: '🚨 Breaking Changes'
+    labels: [ '🔒 Security', '🚀 Release' ]
+
+  - title: '✨ Features'
+    labels: [ '✨ Feature' ]
+
+  - title: '🐛 Bug Fixes'
+    labels: [ '🐛 Bug' ]
+
+  - title: '🚀 Enhancements & Updates'
+    labels: [ '⚡️ Performance', '🧹 Updates / Chore', '🔄 Refactor', '🤖 Dependencies' ]
+
+  - title: '🗄️ Database & Configuration'
+    labels: [ '🗄️ Database / Migrations', '🔧 Configuration' ]
+
+  - title: '📚 Documentation'
+    labels: [ '📚 Documentation' ]
+
+  - title: '🛡️ Tests & CI'
+    labels: [ '🧪 Testing', '🛡️ Infrastructure / CI' ]
+
+  - title: '🛠️ Development & Tooling'
+    labels: [ '🎨 Code Style', '📦 Build / Tooling' ]
+
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
+change-title-escapes: '\<*_&'
+
+exclude-contributors:
+  - dependabot
+  - dependabot[bot]
+
+version-resolver:
+  major:
+    labels: [ 'major', 'breaking', '🚀 Release', '🔒 Security' ]
+  minor:
+    labels: [ 'minor', '✨ Feature', '🗄️ Database / Migrations' ]
+  patch:
+    labels: [ 'patch', '🐛 Bug', '📚 Documentation', '⚡️ Performance', '🧹 Updates / Chore', '🔄 Refactor', '🤖 Dependencies', '🧪 Testing', '🛡️ Infrastructure / CI', '🔧 Configuration', '🎨 Code Style', '📦 Build / Tooling' ]
+  default: patch
+
+template: |
+  ## What's Changed
+  
+  $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
