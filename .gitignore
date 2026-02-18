@@ -19,6 +19,11 @@ profile.cov
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+bin/
+tmp/
+
+.ai/
+.notes/
 
 # Go workspace file
 go.work
