@@ -1,0 +1,27 @@
+services:
+  backend_dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.hot-reload
+      args:
+        HTTP_PORT:  ${HOT__RELOAD__HTTP__PORT:-8081}
+        GO_VERSION: ${GO_VERSION:-1.25}
+    ports: 
+      - "${HOT__RELOAD__HTTP__PORT:-8081}:\
+         ${INIT__ENTRY__HTTP__PORT:-8080}"
+    restart: unless-stopped
+    volumes:
+      - ./.air.toml:/app/.air.toml:ro
+      - ./.env:/app/.env:ro
+      - ./go.mod:/app/go.mod:ro
+      - ./go.sum:/app/go.sum:ro
+      - ./cmd:/app/cmd:ro
+      - ./internal:/app/internal:ro
+      - go-mod-cache:/go/pkg/mod
+      - go-build-cache:/root/.cache/go-build
+    tty: true
+    stdin_open: true
+
+volumes:
+  go-mod-cache:
+  go-build-cache:
