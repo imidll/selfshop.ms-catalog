@@ -1,0 +1,26 @@
+# .github/codeql.yml
+
+name: "codeql configuration"
+
+disable-default-queries: false
+queries:
+  - uses: security-and-quality
+
+paths-ignore:
+  - '**/vendor/**'
+  - '**/testdata/**'
+  - '**/*_test.go'
+  - '**/mocks/**'
+  - '**/*.mock.go'
+  - '**/*_mock.go'
+  - '**/*.pb.go'
+  - '**/*.gen.go'
+
+paths:
+  - 'cmd/**'
+  - 'internal/**'
+
+query-filters:
+  - exclude:
+      id: go/log-injection
+      kind: path-problem
