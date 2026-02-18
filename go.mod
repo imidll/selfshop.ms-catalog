@@ -11,7 +11,7 @@ require (
 	github.com/knadh/koanf/v2 v2.3.2
 	github.com/stretchr/testify v1.8.4
 	go.uber.org/fx v1.24.0
-	go.uber.org/zap v1.26.0
+	go.uber.org/zap v1.27.1
 )
 
 require (
