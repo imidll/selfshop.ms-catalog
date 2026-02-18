@@ -1,0 +1,40 @@
+# .github/dependabot.yml
+
+version: 2
+
+updates:
+  - package-ecosystem: "gomod"
+    assignees: [ "imidll" ]
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "dev"
+    labels: [ "🤖 Dependencies", "go" ]
+    commit-message:
+      prefix: "chore"
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: "github-actions"
+    assignees: [ "imidll" ]
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    target-branch: "dev"
+    labels: [ "🤖 Dependencies", "ci" ]
+    commit-message:
+      prefix: "chore"
+
+  # - package-ecosystem: "docker"
+  #   assignees: [ "imidll" ]
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+  #     day: "monday"
+  #   target-branch: "dev"
+  #   labels: [ "🤖 Dependencies", "docker" ]
+  #   commit-message:
+  #     prefix: "chore"
