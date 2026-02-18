@@ -1,0 +1,30 @@
+# .github/codecov.yml
+
+codecov:
+  require_ci_to_pass: true
+
+coverage:
+  precision: 2
+  round: down
+  range: "80...100"
+
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1%
+    patch:
+      default:
+        target: 80%
+        threshold: 5%
+
+ignore:
+  - '**/main.go'
+  - '**/vendor/**'
+  - '**/testdata/**'
+  - '**/*_test.go'
+  - '**/mocks/**'
+  - '**/*.mock.go'
+  - '**/*_mock.go'
+  - '**/*.pb.go'
+  - '**/*.gen.go'
