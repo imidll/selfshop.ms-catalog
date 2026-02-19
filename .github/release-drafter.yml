@@ -1,5 +1,3 @@
-# .github/release-drafter.yml
-
 name-template: '$RESOLVED_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
 
@@ -7,32 +5,33 @@ categories:
   - title: '💥 Breaking Changes'
     labels: ['💥 Breaking Change']
 
+  - title: '🔒 Security'
+    labels: ['🔒 Security']
+    exclude-labels: ['💥 Breaking Change']
+
   - title: '✨ Features'
     labels: ['✨ Feature']
+    exclude-labels: ['💥 Breaking Change', '🔒 Security']
 
   - title: '🐛 Bug Fixes'
     labels: ['🐛 Bug']
+    exclude-labels: ['💥 Breaking Change', '🔒 Security', '✨ Feature']
 
-  - title: '⚡️ Performance'
-    labels: ['⚡️ Performance']
+  - title: '⚡️ Performance & Refactor'
+    labels: ['⚡️ Performance', '🔄 Refactor']
+    exclude-labels: ['💥 Breaking Change', '🔒 Security', '✨ Feature', '🐛 Bug']
 
-  - title: '🔄 Refactor'
-    labels: ['🔄 Refactor']
+  - title: '🧹 Other Changes'
+    collapse-after: 3
+    labels:
+      - '🧹 Chore'
+      - '🤖 Dependencies'
+      - '🧪 Testing'
+      - '🛡️ Infrastructure / CI'
+      - '📚 Documentation'
+      - '🎨 Code Style'
+    exclude-labels: ['💥 Breaking Change', '🔒 Security', '✨ Feature', '🐛 Bug', '⚡️ Performance', '🔄 Refactor']
 
-  - title: '🧹 Chore & Dependencies'
-    labels: ['🧹 Chore', '🤖 Dependencies']
-
-  - title: '🧪 Tests & CI'
-    labels: ['🧪 Testing', '🛡️ Infrastructure / CI']
-
-  - title: '📚 Documentation'
-    labels: ['📚 Documentation']
-
-  - title: '🎨 Code Style'
-    labels: ['🎨 Code Style']
-
-# Каждый PR попадает ровно в одну категорию — первую совпавшую
-# Changelog строится из заголовков коммитов PR через $TITLE
 change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&'
 
