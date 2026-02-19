@@ -63,8 +63,10 @@ version-resolver:
   default: patch
 
 template: |
-  ## What's Changed
-
   $CHANGES
+
+  ---
+
+  > Нашли баг или есть предложение? Открывайте [issue](https://github.com/$OWNER/$REPOSITORY/issues/new/choose) или присоединяйтесь к [discussions](https://github.com/$OWNER/$REPOSITORY/discussions).
 
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
